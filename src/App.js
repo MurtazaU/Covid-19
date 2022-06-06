@@ -10,11 +10,14 @@ import {
     CardContent
   } from '@mui/material';
 import './CSS/Header.css'
+import Table from './Components/Table'
+import {sortData} from './Components/utility'
 
 function App() {
   const [countries, setCountries] = useState([])
   const [country, setCountry] = useState('Worldwide')
   const [countryInfo, setCountryInfo] = useState({})
+  const [tableData, setTableData] = useState([])
 
 useEffect(() => {
   fetch('https://disease.sh/v3/covid-19/all')
@@ -38,6 +41,9 @@ useEffect(() => {
               value : country.countryInfo.iso2 // UK, USA, PK, IND
             }
           ))
+
+          const sortedData = sortData(data)
+          setTableData(sortedData)
           setCountries(countries)
         })
       }
@@ -100,10 +106,13 @@ useEffect(() => {
       {/* RIGHT SECTION */}
       <Card className="app__right">
         <CardContent>
-          <h3>Live Cases By Country</h3>
         {/* TABLE */}
-        <h3>Worldwide New Cases</h3>
+          <h3>Live Cases By Country</h3>
+          <Table countries={tableData} />
+
         {/* GRAPH */}
+        <h3>Worldwide New Cases</h3>
+        
         </CardContent>
       </Card>
 
