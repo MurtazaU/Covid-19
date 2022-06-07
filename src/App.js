@@ -12,6 +12,7 @@ import {
 import './CSS/Header.css'
 import Table from './Components/Table'
 import {sortData} from './Components/utility'
+import LineGraph from './Components/LineGraph'
 
 function App() {
   const [countries, setCountries] = useState([])
@@ -112,6 +113,7 @@ useEffect(() => {
 
         {/* GRAPH */}
         <h3>Worldwide New Cases</h3>
+        <LineGraph />
         
         </CardContent>
       </Card>
